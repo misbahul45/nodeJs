@@ -1,27 +1,27 @@
-const fsPromises=require("fs").promises
-const fs=require("fs")
 const path = require("path")
+const fs = require("fs")
+const fsPromises = require("fs").promises
 
-const fileOps=async()=>{
-    try{
-        const data=await fsPromises.readFile(path.join(__dirname,"files","hello.txt"),"utf8")
-        console.log(data)
-        //it using for delete
-        await fsPromises.unlink(path.join(__dirname,"files","hello.txt"))
-        //it using for create
-        await fsPromises.writeFile(path.join(__dirname,"files","helloPromises.txt"),data)
-        await fsPromises.appendFile(path.join(__dirname,"files","helloPromises.txt"),"\nNice to met You hallo");
-        await fsPromises.rename(path.join(__dirname,"files","helloPromises.txt"),path.join(__dirname,"files","helloPromisesRename.txt"));
+// const fileOps=async()=>{
+//     try{
+//         const data=await fsPromises.readFile(path.join(__dirname,"files","hello.txt"),"utf8")
+//         console.log(data)
+//         //it using for delete
+//         await fsPromises.unlink(path.join(__dirname,"files","hello.txt"))
+//         //it using for create
+//         await fsPromises.writeFile(path.join(__dirname,"files","helloPromises.txt"),data)
+//         await fsPromises.appendFile(path.join(__dirname,"files","helloPromises.txt"),"\nNice to met You hallo");
+//         await fsPromises.rename(path.join(__dirname,"files","helloPromises.txt"),path.join(__dirname,"files","helloPromisesRename.txt"));
         
-        const newData=await fsPromises.readFile(path.join(__dirname,"files","helloPromisesRename.txt"),"utf8")
-        console.log(newData)
+//         const newData=await fsPromises.readFile(path.join(__dirname,"files","helloPromisesRename.txt"),"utf8")
+//         console.log(newData)
 
-    }catch(e){
-        console.log(e)
-    }
-}
+//     }catch(e){
+//         console.log(e)
+//     }
+// }
 
-fileOps()
+// fileOps()
 
 //read file
 // fs.readFile("./files/lorem.txt",'utf8',(err,data)=>{
@@ -61,6 +61,27 @@ fileOps()
 //         })
 //     })
 // })
+
+//copy file
+//const readCopyFile=fs.createReadStream(path.join(__dirname,"files","copyFile.txt"))
+//const writeAnewCopyFile=fs.createWriteStream(path.join(__dirname,"files","coopyNewFile.txt"))
+//action to copy 1
+// readCopyFile.on("data",(chunk)=>{
+//     writeAnewCopyFile.write(chunk)
+// })
+
+//action copy 2
+//readCopyFile.pipe(writeAnewCopyFile)
+
+
+
+//membuat folder baru
+
+
+fs.mkdir(path.join(__dirname,"files","folderBaruFs"), err=>{
+    if(err) throw err
+    console.log('folder created')
+})
 
 //exit uncaght err
 process.on('uncaughtException', err=>{
